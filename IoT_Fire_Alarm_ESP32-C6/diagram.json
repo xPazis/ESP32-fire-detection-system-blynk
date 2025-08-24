@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "author": "Μαριος Μανουσακης",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-c6-devkitc-1", "id": "esp", "top": 14.89, "left": 4.12, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 142.8,
+      "left": 198.6,
+      "rotate": 90,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 167.15,
+      "left": 134.4,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 73.4,
+      "left": 153.6,
+      "attrs": { "color": "red", "xray": "1" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 102.9,
+      "left": 254.1,
+      "rotate": 90,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-lcd2004",
+      "id": "lcd1",
+      "top": -137.6,
+      "left": 130.4,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-gas-sensor", "id": "gas1", "top": 108.3, "left": -233, "attrs": {} },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc1",
+      "top": 31.4,
+      "left": -231,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "led1:C", "esp:GND.2", "black", [ "h0", "v-9.2", "h38.4", "v38.4" ] ],
+    [ "led1:A", "r1:2", "blue", [ "h0" ] ],
+    [ "r1:1", "esp:12", "blue", [ "v0" ] ],
+    [ "bz1:1", "esp:GND.2", "black", [ "h0", "v-28.8", "h76.8", "v76.8" ] ],
+    [ "bz1:2", "esp:13", "blue", [ "h-57.6", "v18.8" ] ],
+    [ "btn1:2.l", "esp:9", "blue", [ "h-9.6", "v38.6" ] ],
+    [ "btn1:1.r", "esp:GND.2", "black", [ "v0", "h115.4", "v96" ] ],
+    [ "esp:GND.4", "lcd1:GND", "black", [ "h-1.1", "v-153.6" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h-9.6", "v-47.9", "h364.8", "v384", "h-518.4", "v-67.2" ] ],
+    [ "ntc1:GND", "esp:GND.4", "black", [ "h0", "v-28.8", "h192" ] ],
+    [ "ntc1:VCC", "esp:3V3", "red", [ "h9.6", "v-19.2" ] ],
+    [ "gas1:GND", "esp:GND.1", "black", [ "h86.4", "v37.6", "h19.2" ] ],
+    [ "gas1:VCC", "esp:5V", "red", [ "h9.6", "v18.3" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "h-19.2", "v192.2" ] ],
+    [ "lcd1:SCL", "esp:22", "green", [ "h-9.6", "v173.1" ] ],
+    [ "gas1:AOUT", "esp:1", "green", [ "h86.4", "v-9.6" ] ],
+    [ "ntc1:OUT", "esp:5", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
